@@ -1,0 +1,19 @@
+package academy.everyonecodes.advancedyml;
+
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.stereotype.Service;
+
+@Service
+@ConfigurationProperties("advanced")
+public class DecimalNumber {
+
+    private double decimalNumber;
+
+    public double get() {
+        return decimalNumber;
+    }
+
+    void setDecimalNumber(double decimalNumber) {
+        this.decimalNumber = decimalNumber;
+    }
+}

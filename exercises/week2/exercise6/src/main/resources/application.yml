@@ -1,0 +1,14 @@
+cinema:
+  special offer:
+    templates:
+      - name: male template
+        keyword: Mr.
+        message: Good day --name--, don’t forget our 20% discount on tickets this Friday!
+      - name: female template
+        keyword: Ms.
+        message: Dear --name--, you and your friends will have so much fun at the cinema this Friday with a 20% discount!
+      - name: privileged template
+        keyword: Threepwood
+        message: My dearest --name--, your lovely family gives you a 20% discount on tickets this Friday!
+    defaultmessage: Hello --name--! How about a Friday night movie? This week with a 20% discount!
+
