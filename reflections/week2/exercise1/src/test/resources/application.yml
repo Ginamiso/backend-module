@@ -1,0 +1,14 @@
+secretagent:
+  handshakes:
+    - number: 2
+      move: thumb
+    - number: 3
+      move: little
+    - number: 5
+      move: tickles
+    - number: 6
+      move: bro
+    - number: 9
+      move: thousand
+  minPrice: 10
+  maxPrice: 9999
