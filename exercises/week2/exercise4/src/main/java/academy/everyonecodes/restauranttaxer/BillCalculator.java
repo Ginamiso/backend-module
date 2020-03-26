@@ -8,7 +8,7 @@ import java.util.Set;
 @Service
 public class BillCalculator {
 
-    private Set<Taxer> taxers;
+    private final Set<Taxer> taxers;
 
     public BillCalculator(Set<Taxer> taxers) {
         this.taxers = taxers;
@@ -18,8 +18,9 @@ public class BillCalculator {
          return dishes.stream()
                 .mapToDouble(dish -> taxers.stream()
                         .filter(taxer -> taxer.matches(dish))
-                        .findAny().map(taxer -> taxer.tax(dish))
-                        .orElseGet(dish::getPrice))
+                        .map(taxer -> taxer.tax(dish))
+                        .findFirst()
+                        .orElse(dish.getPrice()))
                 .sum();
     }
 }

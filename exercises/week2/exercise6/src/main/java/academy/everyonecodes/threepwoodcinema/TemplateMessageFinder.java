@@ -1,32 +1,26 @@
 package academy.everyonecodes.threepwoodcinema;
 
-import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-@ConfigurationProperties("cinema.specialoffer")
 public class TemplateMessageFinder {
 
     private List<Template> templates;
     private String defaultMessage;
 
-    public TemplateMessageFinder(List<Template> templates) {
+    public TemplateMessageFinder(List<Template> templates,
+                                 @Value("${cinema.specialoffer.defaultmessage}") String defaultMessage) {
         this.templates = templates;
-    }
-
-    void setTemplates(List<Template> templates) {
-        this.templates = templates;
-    }
-
-    void setDefaultMessage(String defaultMessage) {
         this.defaultMessage = defaultMessage;
     }
-    public String find(String name){
+
+    public String find(String name) {
         return templates.stream()
                 .filter(template -> name.startsWith(template.getKeyword()))
-                .map(template -> template.getMessage())
+                .map(Template::getMessage)
                 .findFirst()
                 .orElse(defaultMessage);
 

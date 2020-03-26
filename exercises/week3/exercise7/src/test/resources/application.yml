@@ -1,0 +1,8 @@
+skills:
+  developers:
+    - name: one
+      skills: 1, 2, 3
+    - name: two
+      skills: 4, 3
+    - name: three
+      skills: 6, 2, 3

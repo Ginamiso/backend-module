@@ -1,6 +1,6 @@
 package academy.everyonecodes.rockscissorpaper.configuration;
 
-import academy.everyonecodes.rockscissorpaper.serviceAndDataClasses.Move;
+import academy.everyonecodes.rockscissorpaper.domain.Move;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

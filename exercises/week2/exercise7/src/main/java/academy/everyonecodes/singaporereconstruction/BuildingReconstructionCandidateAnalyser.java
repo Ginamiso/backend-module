@@ -14,10 +14,6 @@ public class BuildingReconstructionCandidateAnalyser {
 
     private List<Building> buildings;
 
-    public List<Building> provideBuildings() {
-        return buildings;
-    }
-
     void setBuildings(List<Building> buildings) {
         this.buildings = buildings;
     }

@@ -11,6 +11,6 @@ public class Addition extends Calculation {
 
     @Override
     public double calculate(Expression expression) {
-        return expression.getTerm1()+expression.getTerm2();
+        return expression.getTerm1() + expression.getTerm2();
     }
 }

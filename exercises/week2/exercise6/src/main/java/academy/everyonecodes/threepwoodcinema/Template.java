@@ -6,15 +6,6 @@ public class Template {
     private String keyword;
     private String message;
 
-    public Template(String name, String keyword, String message) {
-        this.name = name;
-        this.keyword = keyword;
-        this.message = message;
-    }
-
-    Template() {
-    }
-
     public String getName() {
         return name;
     }

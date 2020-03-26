@@ -20,7 +20,7 @@ class CalculatorTest {
 
     @ParameterizedTest
     @MethodSource("parameters")
-    void calculate(double expected, String input) throws IllegalArgumentException {
+    void calculate(double expected, String input){
         double result = calculator.calculate(input);
 
         assertEquals(expected, result);
@@ -38,7 +38,7 @@ class CalculatorTest {
 
     @Test
     void testExpectedException() throws IllegalArgumentException {
-        String input = "1 x 1";
+        String input = "1 $ 1";
         assertThrows(IllegalArgumentException.class, () ->
                 calculator.calculate(input));
     }
