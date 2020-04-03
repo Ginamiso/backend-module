@@ -1,7 +1,7 @@
-package academy.everyonecodes.drhouseadmission.communication.endpoints;
+package academy.everyonecodes.drhousediagnoses.communication.enpoint;
 
-import academy.everyonecodes.drhouseadmission.logic.Admission;
-import academy.everyonecodes.drhouseadmission.domain.Patient;
+import academy.everyonecodes.drhousediagnoses.domain.Patient;
+import academy.everyonecodes.drhousediagnoses.logic.DiagnosisRoom;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,14 +11,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/patients")
 public class PatientEndpoint {
 
-    private final Admission admission;
+    private final DiagnosisRoom diagnosisRoom;
 
-    public PatientEndpoint(Admission admission) {
-        this.admission = admission;
+    public PatientEndpoint(DiagnosisRoom diagnosisRoom) {
+        this.diagnosisRoom = diagnosisRoom;
     }
     @PostMapping
     Patient post(@RequestBody Patient patient){
-        return admission.admit(patient);
-
+        return diagnosisRoom.diagnose(patient);
     }
 }

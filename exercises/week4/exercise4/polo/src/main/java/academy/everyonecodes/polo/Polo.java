@@ -6,10 +6,6 @@ import org.springframework.stereotype.Service;
 public class Polo {
 
     public String answer(String message) {
-        if (message.equals("Marco")) {
-            return "Polo";
-        } else {
-            return "What?";
-        }
+        return message.equals("Marco") ? "Polo" : "What?";
     }
 }

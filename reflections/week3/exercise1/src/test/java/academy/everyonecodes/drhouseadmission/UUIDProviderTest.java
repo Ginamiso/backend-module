@@ -14,7 +14,7 @@ class UUIDProviderTest {
 
     @Test
     void provideUUID() {
-        Patient patient = new Patient("gina", "headache");
+        Patient patient = new Patient(null, "gina", "headache");
 
         provider.provideUUID(patient);
 
@@ -33,7 +33,7 @@ class UUIDProviderTest {
         assertTrue(oResult.isEmpty());
 
         String patientName = "gina";
-        Patient patient = new Patient(patientName , "headache");
+        Patient patient = new Patient(null, patientName , "headache");
         provider.provideUUID(patient);
         String uuid = patient.getUuid();
         oResult = provider.findUUID(patientName);

@@ -19,7 +19,7 @@ public class ComplexFormula {
                 .map(Integer::valueOf)
                 .map(formulaClient::post)
                 .map(String::valueOf)
-                .collect(Collectors.joining(""));
+                .collect(Collectors.joining());
         return Integer.parseInt(result);
     }
 }

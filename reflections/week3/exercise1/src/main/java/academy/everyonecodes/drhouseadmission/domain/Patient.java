@@ -9,9 +9,10 @@ public class Patient {
     public Patient() {
     }
 
-    public Patient(String name, String symptoms) {
+    public Patient(String uuid, String name, String symptoms) {
         this.name = name;
         this.symptoms = symptoms;
+        this.uuid = uuid;
     }
 
     public String getUuid() {

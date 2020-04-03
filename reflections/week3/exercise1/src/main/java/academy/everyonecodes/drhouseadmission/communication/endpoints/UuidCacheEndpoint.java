@@ -1,4 +1,4 @@
-package academy.everyonecodes.drhouseadmission.endpoints;
+package academy.everyonecodes.drhouseadmission.communication.endpoints;
 
 import academy.everyonecodes.drhouseadmission.logic.UUIDProvider;
 import org.springframework.web.bind.annotation.GetMapping;
