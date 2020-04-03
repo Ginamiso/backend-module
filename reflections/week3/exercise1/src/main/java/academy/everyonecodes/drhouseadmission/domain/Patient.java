@@ -1,4 +1,4 @@
-package academy.everyonecodes.drhouseadmission;
+package academy.everyonecodes.drhouseadmission.domain;
 
 public class Patient {
 
@@ -9,8 +9,7 @@ public class Patient {
     public Patient() {
     }
 
-    public Patient(String uuid, String name, String symptoms) {
-        this.uuid = uuid;
+    public Patient(String name, String symptoms) {
         this.name = name;
         this.symptoms = symptoms;
     }
@@ -27,7 +26,7 @@ public class Patient {
         return symptoms;
     }
 
-    void setUuid(String uuid) {
+    public void setUuid(String uuid) {
         this.uuid = uuid;
     }
 

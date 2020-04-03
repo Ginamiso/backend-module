@@ -1,5 +1,7 @@
-package academy.everyonecodes.fleamarket;
+package academy.everyonecodes.fleamarket.communication.endpoint;
 
+import academy.everyonecodes.fleamarket.logic.FleaMarketService;
+import academy.everyonecodes.fleamarket.domain.Item;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,7 +18,7 @@ public class FleaMarketEndpoint {
 
     @GetMapping
     List<Item> getAll() {
-        return service.getAll();
+        return service.findAll();
     }
 
     @PostMapping

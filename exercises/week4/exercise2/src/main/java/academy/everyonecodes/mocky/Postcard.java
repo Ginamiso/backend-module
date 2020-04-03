@@ -8,7 +8,7 @@ public class Postcard {
     private String to;
     private String content;
 
-    public Postcard() {
+    Postcard() {
     }
 
     public Postcard(String from, String to, String content) {

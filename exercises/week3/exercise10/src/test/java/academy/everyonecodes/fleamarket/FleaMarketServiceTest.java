@@ -1,5 +1,7 @@
 package academy.everyonecodes.fleamarket;
 
+import academy.everyonecodes.fleamarket.domain.Item;
+import academy.everyonecodes.fleamarket.logic.FleaMarketService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -19,7 +21,7 @@ class FleaMarketServiceTest {
         Item item = new Item("Chair", 20.9);
         service.add(item);
         List<Item> expected = List.of(new Item("Chair", 20.9));
-        List<Item> result = service.getAll();
+        List<Item> result = service.findAll();
 
         assertEquals(expected, result);
     }

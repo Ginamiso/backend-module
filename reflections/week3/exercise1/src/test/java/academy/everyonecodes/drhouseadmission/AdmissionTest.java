@@ -1,5 +1,7 @@
 package academy.everyonecodes.drhouseadmission;
 
+import academy.everyonecodes.drhouseadmission.domain.Patient;
+import academy.everyonecodes.drhouseadmission.logic.Admission;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -15,9 +17,9 @@ class AdmissionTest {
 
     @Test
     void admit() {
-        Patient patient1 = new Patient("gina", "", "headache");
-        admission.admit(patient1);
-        String uuid = patient1.getUuid();
+        Patient patient1 = new Patient("gina", "headache");
+        Patient admitted = admission.admit(patient1);
+        String uuid = admitted.getUuid();
 
         assertEquals(36, uuid.length());
     }

@@ -7,7 +7,7 @@ public class TestResult {
     private String result;
     private String message;
 
-    public TestResult() {
+    TestResult() {
     }
 
     public TestResult(String result, String message) {
@@ -23,11 +23,11 @@ public class TestResult {
         return message;
     }
 
-    public void setResult(String result) {
+    void setResult(String result) {
         this.result = result;
     }
 
-    public void setMessage(String message) {
+    void setMessage(String message) {
         this.message = message;
     }
 

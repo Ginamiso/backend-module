@@ -1,4 +1,4 @@
-package academy.everyonecodes.fleamarket;
+package academy.everyonecodes.fleamarket.domain;
 
 import java.util.Objects;
 

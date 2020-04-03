@@ -17,8 +17,7 @@ public class MarathonService {
     }
     public Optional<Runner> findWinner(){
         return runners.stream()
-                .sorted(Comparator.comparing(Runner::getDuration))
-                .findFirst();
+                .min(Comparator.comparing(Runner::getDuration));
     }
     Set<Runner> getRunners(){
         return runners;

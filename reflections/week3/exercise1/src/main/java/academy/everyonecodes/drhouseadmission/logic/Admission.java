@@ -1,4 +1,4 @@
-package academy.everyonecodes.drhouseadmission;
+package academy.everyonecodes.drhouseadmission.logic;
 
 import academy.everyonecodes.drhouseadmission.domain.Patient;
 import org.springframework.stereotype.Service;

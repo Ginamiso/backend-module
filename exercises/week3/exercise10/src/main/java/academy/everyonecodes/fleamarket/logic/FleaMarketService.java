@@ -1,4 +1,4 @@
-package academy.everyonecodes.fleamarket;
+package academy.everyonecodes.fleamarket.logic;
 
 import academy.everyonecodes.fleamarket.domain.Item;
 import org.springframework.stereotype.Service;
@@ -11,7 +11,7 @@ import static java.util.stream.Collectors.toList;
 @Service
 public class FleaMarketService {
 
-    private List<Item> items = new ArrayList<>();
+    private final List<Item> items = new ArrayList<>();
 
     public Item add(Item item) {
         items.add(item);
@@ -24,7 +24,7 @@ public class FleaMarketService {
                 .collect(toList());
     }
 
-    public List<Item> getAll() {
+    public List<Item> findAll() {
         return items;
     }
 }

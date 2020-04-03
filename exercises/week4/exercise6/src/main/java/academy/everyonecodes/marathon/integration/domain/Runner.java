@@ -8,7 +8,7 @@ public class Runner {
     private String name;
     private Duration duration;
 
-    public Runner() {
+    Runner() {
     }
 
     public Runner(String name, Duration duration) {

@@ -1,8 +1,8 @@
 package academy.everyonecodes.drhouseadmission;
 
+import academy.everyonecodes.drhouseadmission.domain.Patient;
+import academy.everyonecodes.drhouseadmission.logic.UUIDProvider;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
 
 import java.util.Optional;
 
@@ -14,20 +14,32 @@ class UUIDProviderTest {
 
     @Test
     void provideUUID() {
-        Patient patient = new Patient("gina", "", "headache");
-        provider.provideUUID(patient);
-        String uuid = provider.getCacheSnapshot().get("gina");
-        int result = provider.getCacheSnapshot().size();
+        Patient patient = new Patient("gina", "headache");
 
-        assertEquals(1, result);
+        provider.provideUUID(patient);
+
+        String uuid1 = patient.getUuid();
+
+        provider.provideUUID(patient);
+
+        String uuid2 = patient.getUuid();
+
+        assertEquals(uuid2, uuid1);
     }
 
     @Test
     void findUUID() {
-        Patient patient = new Patient("gina", "123", "headache");
-        provider.provideUUID(patient);
-        Optional<String> result = provider.findUUID("gina");
+        Optional<String> oResult = provider.findUUID("unknown");
+        assertTrue(oResult.isEmpty());
 
-        assertEquals(Optional.of("123"), result);
+        String patientName = "gina";
+        Patient patient = new Patient(patientName , "headache");
+        provider.provideUUID(patient);
+        String uuid = patient.getUuid();
+        oResult = provider.findUUID(patientName);
+
+        assertTrue(oResult.isPresent());
+
+        assertEquals(uuid, oResult.get());
     }
 }
