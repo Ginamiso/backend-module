@@ -1,0 +1,6 @@
+server:
+  port: 9002
+hotrightnow:
+  movies:
+    - title: test1
+      synopsis: test1
