@@ -23,19 +23,13 @@ class PatientEndpointTest {
     DiagnosisRoom diagnosisRoom;
 
     Patient patient = new Patient("123", "patient", "test", null);
-    Patient withDiagnosis = new Patient("123", "patient", "test", "diagnosis");
 
     String url = "/patients";
 
 
     @Test
     void post() {
-        when(diagnosisRoom.diagnose(patient))
-                .thenReturn(withDiagnosis);
-
-        Patient result = testRestTemplate.postForObject(url, patient, Patient.class);
-
-        assertEquals(withDiagnosis, result);
+        testRestTemplate.postForObject(url, patient, Patient.class);
 
         verify(diagnosisRoom).diagnose(patient);
     }

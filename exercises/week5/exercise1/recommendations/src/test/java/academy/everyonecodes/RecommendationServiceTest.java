@@ -28,7 +28,7 @@ class RecommendationServiceTest {
 
     @Test
     void getTailored() {
-        when(tailoredClient.get(userUuid))
+        when(tailoredClient.get(anyString()))
                 .thenReturn(movies);
 
         List<Movie> result = service.getMovies(userUuid);

@@ -2,6 +2,7 @@ package academy.everyonecodes.home;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 
@@ -14,9 +15,14 @@ class HomeEndpointTest {
     @Autowired
     TestRestTemplate restTemplate;
 
+    @Value("${message}")
+    String message;
+
     @Test
     void getHome() {
         String url = "/home";
-        restTemplate.getForObject(url, String.class);
+        String result = restTemplate.getForObject(url, String.class);
+
+        assertEquals(message, result);
     }
 }

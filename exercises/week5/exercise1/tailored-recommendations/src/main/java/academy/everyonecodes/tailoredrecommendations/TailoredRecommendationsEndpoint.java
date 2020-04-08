@@ -19,6 +19,7 @@ public class TailoredRecommendationsEndpoint {
     }
     @PostMapping
     TailoredRecommendation postOne(@RequestBody TailoredRecommendation tailoredRecommendation){
-        return store.post(tailoredRecommendation);
+        store.post(tailoredRecommendation);
+        return tailoredRecommendation;
     }
 }

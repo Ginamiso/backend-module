@@ -28,8 +28,7 @@ public class TailoredRecommendationsStore {
                 .collect(toList());
     }
 
-    public TailoredRecommendation post(TailoredRecommendation recommendation) {
+    public void post(TailoredRecommendation recommendation) {
         recommendations.add(recommendation);
-        return recommendation;
     }
 }

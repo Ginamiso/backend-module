@@ -31,10 +31,8 @@ class TailoredRecommendationsClientTest {
     void get() {
         String userUuid = "123";
 
-        List<Movie> expected = List.of(new Movie("test", "test"));
-
         Mockito.when(restTemplate.getForObject(url+"/"+userUuid, Movie[].class))
-                .thenReturn(expected.toArray(Movie[]::new));
+                .thenReturn(new Movie[]{});
 
         client.get(userUuid);
 

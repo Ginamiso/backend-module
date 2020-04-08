@@ -29,9 +29,6 @@ class DiagnosesClientTest {
 
     @Test
     void send() {
-        when(restTemplate.postForObject(diagnoseUrl, patient, Patient.class))
-                .thenReturn(patient);
-
         diagnosesClient.send(patient);
 
         verify(restTemplate).postForObject(diagnoseUrl, patient, Patient.class);

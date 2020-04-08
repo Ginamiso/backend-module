@@ -54,15 +54,4 @@ class TailoredRecommendationsStoreTest {
         assertEquals(expected, result);
         assertEquals(expected.size(), result.size());
     }
-
-    @Test
-    void getAll() {
-        List<TailoredRecommendation> result = store.get();
-        List<TailoredRecommendation> expected = List.of(
-                new TailoredRecommendation("1", new Movie("test1", "test1")),
-                new TailoredRecommendation("2", new Movie("test2", "test2"))
-        );
-        assertEquals(expected, result);
-
-    }
 }

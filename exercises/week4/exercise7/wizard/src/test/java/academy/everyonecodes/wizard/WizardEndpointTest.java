@@ -2,6 +2,7 @@ package academy.everyonecodes.wizard;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 
@@ -14,9 +15,16 @@ class WizardEndpointTest {
     @Autowired
     TestRestTemplate restTemplate;
 
+    @Value("${home.url}")
+    String homeUrl;
+
+    String url = "/wizard";
+
+
     @Test
     void getUrl() {
-        String url = "/wizard";
-        restTemplate.getForObject(url, String.class);
+        String result = restTemplate.getForObject(url, String.class);
+
+        assertEquals(homeUrl, result);
     }
 }

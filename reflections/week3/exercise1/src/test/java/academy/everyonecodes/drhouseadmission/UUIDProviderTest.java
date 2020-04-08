@@ -2,15 +2,19 @@ package academy.everyonecodes.drhouseadmission;
 
 import academy.everyonecodes.drhouseadmission.domain.Patient;
 import academy.everyonecodes.drhouseadmission.logic.UUIDProvider;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class UUIDProviderTest {
 
-    UUIDProvider provider = new UUIDProvider();
+    UUIDProvider provider;
+    Map<String, String> cache;
 
     @Test
     void provideUUID() {

@@ -23,7 +23,6 @@ class RecommendationEndpointTest {
     @Test
     void get() {
         String userUuid = "123";
-
         testRestTemplate.getForObject(url + "/" + userUuid, Movie[].class);
 
         verify(service).getMovies(userUuid);

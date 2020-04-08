@@ -25,9 +25,9 @@ class HotRightNowClientTest {
 
     @Test
     void get() {
-        List<Movie> expected = List.of(new Movie("test", "test"));
         Mockito.when(restTemplate.getForObject(url, Movie[].class))
-                .thenReturn(expected.toArray(Movie[]::new));
+                .thenReturn(new Movie[]{});
+
         client.get();
 
         Mockito.verify(restTemplate).getForObject(url, Movie[].class);

@@ -25,17 +25,11 @@ class AdmissionTest {
     @MockBean
     DiagnosesClient diagnosesClient;
     Patient patient = new Patient(null, "gina", "headache");
-    
-
 
     @Test
     void admit() {
+        admission.admit(patient);
 
-
-        Patient result = admission.admit(patient);
-        String uuid = result.getUuid();
-
-        assertEquals(36, uuid.length());
         verify(uuidProvider).provideUUID(patient);
         verify(diagnosesClient).send(patient);
     }
