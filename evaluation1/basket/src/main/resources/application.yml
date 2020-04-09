@@ -1,0 +1,4 @@
+server:
+  port: 9000
+users:
+  url: http://localhost:9001/users
