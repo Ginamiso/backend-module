@@ -24,7 +24,7 @@ class AdmissionTest {
 
     @MockBean
     DiagnosesClient diagnosesClient;
-    Patient patient = new Patient(null, "gina", "headache");
+    Patient patient = new Patient("gina", "headache");
 
     @Test
     void admit() {

@@ -11,6 +11,8 @@ import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.ArgumentMatchers.anyInt;
+import static org.mockito.Mockito.times;
 import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.NONE;
 
 @SpringBootTest(webEnvironment = NONE)
@@ -30,21 +32,20 @@ class TricksterTest {
     @Test
     void play() {
 
+        Mockito.when(random.nextInt(anyInt())).thenReturn(cup);
         Mockito.when(cupsClient.getCups()).thenReturn(3);
-        Mockito.when(random.nextInt(3)).thenReturn(cup);
+
         String result = trickster.play();
+
         String expected = "The cups have been shuffled!";
         assertEquals(expected, result);
-
-        Mockito.verify(random).nextInt(3);
-        Mockito.verify(cupsClient).getCups();
-        Mockito.verify(cupsClient).deleteCoin(cup);
+        Mockito.verify(cupsClient, times(3)).deleteCoin(anyInt());
         Mockito.verify(cupsClient).putCoin(cup);
     }
 
     @Test
     void hasCoin() {
-        Mockito.when(cupsClient.hasCoin(cup))
+        Mockito.when(cupsClient.hasCoin(anyInt()))
                 .thenReturn(true);
 
         boolean result = trickster.hasCoin(cup);

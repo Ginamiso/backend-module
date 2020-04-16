@@ -1,5 +1,7 @@
 package academy.everyonecodes.drhouseadmission.domain;
 
+import java.util.Objects;
+
 public class Patient {
 
     private String uuid;
@@ -7,6 +9,10 @@ public class Patient {
     private String symptoms;
 
     public Patient() {
+    }
+    public Patient(String name, String symptoms) {
+        this.name = name;
+        this.symptoms = symptoms;
     }
 
     public Patient(String uuid, String name, String symptoms) {
@@ -37,5 +43,20 @@ public class Patient {
 
     void setSymptoms(String symptoms) {
         this.symptoms = symptoms;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Patient patient = (Patient) o;
+        return Objects.equals(uuid, patient.uuid) &&
+                Objects.equals(name, patient.name) &&
+                Objects.equals(symptoms, patient.symptoms);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(uuid, name, symptoms);
     }
 }

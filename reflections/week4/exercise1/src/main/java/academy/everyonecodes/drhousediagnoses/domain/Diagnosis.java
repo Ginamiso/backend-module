@@ -1,7 +1,5 @@
 package academy.everyonecodes.drhousediagnoses.domain;
 
-import java.util.Objects;
-
 public class Diagnosis {
 
     private String name;
@@ -31,17 +29,4 @@ public class Diagnosis {
         this.symptoms = symptoms;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Diagnosis diagnosis = (Diagnosis) o;
-        return Objects.equals(name, diagnosis.name) &&
-                Objects.equals(symptoms, diagnosis.symptoms);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(name, symptoms);
-    }
 }

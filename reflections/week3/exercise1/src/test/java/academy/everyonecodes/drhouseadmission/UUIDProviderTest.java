@@ -16,19 +16,34 @@ class UUIDProviderTest {
     UUIDProvider provider;
     Map<String, String> cache;
 
+    @BeforeEach
+    void setup() {
+        cache = new HashMap<>();
+        provider = new UUIDProvider();
+    }
+
     @Test
-    void provideUUID() {
-        Patient patient = new Patient(null, "gina", "headache");
+    void provideUUIDUnknownPatient() {
+        Patient patient = new Patient("name", "symptoms");
 
         provider.provideUUID(patient);
 
-        String uuid1 = patient.getUuid();
+        assertNotNull(patient.getUuid());
+    }
+
+    @Test
+    void provideUUIDKnowPatient() {
+        String name = "name";
+        String uuid = "uuid";
+        cache.put(name, uuid);
+        Patient patient = new Patient(name, "symptoms");
+        assertNull(patient.getUuid());
 
         provider.provideUUID(patient);
 
-        String uuid2 = patient.getUuid();
+        assertEquals(uuid, patient.getUuid());
 
-        assertEquals(uuid2, uuid1);
+
     }
 
     @Test
@@ -37,7 +52,7 @@ class UUIDProviderTest {
         assertTrue(oResult.isEmpty());
 
         String patientName = "gina";
-        Patient patient = new Patient(null, patientName , "headache");
+        Patient patient = new Patient(null, patientName, "headache");
         provider.provideUUID(patient);
         String uuid = patient.getUuid();
         oResult = provider.findUUID(patientName);

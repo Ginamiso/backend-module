@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class Cup {
 
-    private boolean hasCoin = false;
+    private boolean hasCoin;
 
     public boolean hasCoin(){
         return hasCoin;

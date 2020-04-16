@@ -11,6 +11,11 @@ public class Patient {
 
     Patient() {
     }
+    public Patient(String uuid, String name, String symptoms) {
+        this.uuid = uuid;
+        this.name = name;
+        this.symptoms = symptoms;
+    }
 
     public Patient(String uuid, String name, String symptoms, String diagnosis) {
         this.uuid = uuid;

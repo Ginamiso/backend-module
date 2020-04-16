@@ -11,11 +11,13 @@ public class DiagnosisRoom {
     public DiagnosisRoom(DrHouse drHouse) {
         this.drHouse = drHouse;
     }
-    public Patient diagnose(Patient patient){
+
+    public Patient diagnose(Patient patient) {
         drHouse.diagnose(patient);
         String message = "Patient with symptoms: "
-                + patient.getSymptoms()+";"+
-                " diagnose with: "+patient.getDiagnosis();
+                + patient.getSymptoms()
+                + "; diagnose with: "
+                + patient.getDiagnosis();
         System.out.println(message);
         return patient;
     }

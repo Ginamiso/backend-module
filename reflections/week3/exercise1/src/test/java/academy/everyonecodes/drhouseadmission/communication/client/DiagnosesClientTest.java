@@ -25,7 +25,7 @@ class DiagnosesClientTest {
     @Value("${diagnoses.url}")
     String diagnoseUrl;
 
-    Patient patient = new Patient(null, "test1", "test2");
+    Patient patient = new Patient("test1", "test2");
 
     @Test
     void send() {

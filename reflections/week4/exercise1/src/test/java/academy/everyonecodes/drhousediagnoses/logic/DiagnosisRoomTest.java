@@ -22,7 +22,7 @@ class DiagnosisRoomTest {
     @MockBean
     DrHouse drHouse;
 
-    Patient patient = new Patient("123","patient","test", null);
+    Patient patient = new Patient("123","patient","test");
 
     @Test
     void diagnose() {

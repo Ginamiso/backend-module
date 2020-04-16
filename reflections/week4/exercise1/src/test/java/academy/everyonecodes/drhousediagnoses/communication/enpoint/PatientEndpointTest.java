@@ -22,7 +22,7 @@ class PatientEndpointTest {
     @MockBean
     DiagnosisRoom diagnosisRoom;
 
-    Patient patient = new Patient("123", "patient", "test", null);
+    Patient patient = new Patient("123", "patient", "test");
 
     String url = "/patients";
 

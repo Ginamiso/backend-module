@@ -4,6 +4,7 @@ import academy.everyonecodes.trickster.communication.client.CupsClient;
 import org.springframework.stereotype.Service;
 
 import java.util.Random;
+import java.util.stream.IntStream;
 
 @Service
 public class Trickster {
@@ -18,9 +19,8 @@ public class Trickster {
 
     public String play() {
         int numberOfCups = cupsClient.getCups();
-        for (int i = 0; i < numberOfCups; i++) {
-          cupsClient.deleteCoin(i);
-        }
+        IntStream.range(0, numberOfCups)
+                .forEach(cupsClient::deleteCoin);
         int randomCup = random.nextInt(numberOfCups);
         cupsClient.putCoin(randomCup);
         return "The cups have been shuffled!";
