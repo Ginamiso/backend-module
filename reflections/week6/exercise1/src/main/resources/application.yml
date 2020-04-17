@@ -1,0 +1,8 @@
+server:
+  port: 9003
+spring:
+  data:
+    mongodb:
+      uri: mongodb://localhost/drhouse-treatments
+nurse:
+  treatment: spendd one day in the hospital bed
