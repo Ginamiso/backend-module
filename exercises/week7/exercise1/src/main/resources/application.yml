@@ -1,0 +1,40 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost/the-great-gatsby?useSSL=false
+    username: root
+    password: root
+  jpa:
+    hibernate:
+      ddl-auto: update
+gatsby:
+  menu:  "The Great Gatsby Party Invitation Manager
+
+          MENU
+
+          1.- Invite a person.
+
+          2.- Show all invitations.
+
+          3.- Conclude the current party.
+
+          4.- Exit.
+
+          > Choose one option (1-4): "
+  invite: "The Great Gatsby Party Invitation Manager
+
+           INVITE A PERSON
+
+           > Write the person’s name:"
+  show: "The Great Gatsby Party Invitation Manager
+
+         SHOW ALL INVITATIONS"
+  conclude: "The Great Gatsby Party Invitation Manager
+
+             CONCLUDE THE CURRENT PARTY
+
+             > Do you want to conclude the party? (y, N):
+"
+
+
+
+
