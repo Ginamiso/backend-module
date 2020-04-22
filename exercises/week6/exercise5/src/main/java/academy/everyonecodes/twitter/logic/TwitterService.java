@@ -29,8 +29,8 @@ public class TwitterService {
     public Tweet post(Tweet tweet) {
         tweet.setTimestamp(LocalDateTime.now());
         tweet.setComments(new ArrayList<>());
-        tweetRepository.save(tweet);
-        return tweet;
+        return tweetRepository.save(tweet);
+
     }
 
     public void like(String id) {

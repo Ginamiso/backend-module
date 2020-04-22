@@ -8,5 +8,7 @@ available:
       symptoms: fatigue, appear pale
     - name: anxiety
       symptoms: stress, irritability
+treatments:
+  url: http://localhost:9003/patients
 
 

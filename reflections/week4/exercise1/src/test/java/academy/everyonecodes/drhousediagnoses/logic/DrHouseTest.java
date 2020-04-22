@@ -21,9 +21,8 @@ class DrHouseTest {
     @CsvSource({
             "lupus, ''",
             "lupus, symptom",
-            "allergy, 'sneezing, nasal congestion'",
-            "anemia, 'fatigue, appear pale'",
-            "anxiety, 'stress, irritability'"
+            "test-diagnosis, test-symptom",
+            "test-diagnosis, Test-symptom"
 
     })
     void diagnose(String expected, String symptoms) {

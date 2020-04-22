@@ -11,7 +11,11 @@ import java.util.UUID;
 @Service
 public class UUIDProvider {
 
-    private final Map<String, String> cache = new HashMap<>();
+    private final Map<String, String> cache;
+
+    public UUIDProvider(Map<String, String> cache) {
+        this.cache = cache;
+    }
 
     public void provideUUID(Patient patient) {
         String name = patient.getName();

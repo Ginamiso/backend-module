@@ -25,19 +25,19 @@ public class CountdownManager {
             createCountdown();
             return;
         }
+        decreaseCountdown();
+    }
+
+    private void decreaseCountdown() {
         Countdown countdown = countdownRepository.findAll().get(0);
-        decreaseCountdown(countdown);
+        int count = countdown.getCount();
+        countdown.setCount(count - 1);
         if (countdown.getCount() == 0) {
             deleteCountdown(countdown);
             return;
         }
         countdownRepository.save(countdown);
         System.out.println("Countdown: " + countdown.getCount());
-    }
-
-    private void decreaseCountdown(Countdown countdown) {
-        int count = countdown.getCount();
-        countdown.setCount(count - 1);
     }
 
     private void deleteCountdown(Countdown countdown) {
@@ -50,7 +50,9 @@ public class CountdownManager {
         countdownRepository.save(countdown);
         System.out.println("Countdown: " + countdown.getCount());
     }
+
 }
+
 
 
 

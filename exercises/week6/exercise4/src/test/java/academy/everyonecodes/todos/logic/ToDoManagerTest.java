@@ -11,8 +11,7 @@ import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.NONE;
 
 @SpringBootTest(webEnvironment = NONE)
@@ -25,6 +24,7 @@ class ToDoManagerTest {
     ToDoRepository toDoRepository;
 
     ToDo toDo = new ToDo("title", false);
+    ToDo done = new ToDo("title", true);
     String id = "test id";
 
     @Test
@@ -43,21 +43,15 @@ class ToDoManagerTest {
 
     @Test
     void save() {
-        assertNull(toDo.getId());
-
         toDoManager.save(toDo);
 
         verify(toDoRepository).save(toDo);
     }
 
     @Test
-    void modify() {
-        ToDo done = new ToDo("title", true);
-
+    void modifyDoesFind() {
         when(toDoRepository.findById(id))
                 .thenReturn(Optional.of(toDo));
-        when(toDoRepository.save(done))
-                .thenReturn(done);
 
         Optional<ToDo> oResult = toDoManager.modify(id);
         Optional<ToDo> oExpected = Optional.of(done);
@@ -65,6 +59,19 @@ class ToDoManagerTest {
         assertEquals(oExpected, oResult);
         verify(toDoRepository).findById(id);
         verify(toDoRepository).save(done);
+
+    }
+    @Test
+    void modifyDoesNotFind() {
+        when(toDoRepository.findById(id))
+                .thenReturn(Optional.empty());
+
+        Optional<ToDo> oResult = toDoManager.modify(id);
+        Optional<ToDo> oExpected = Optional.empty();
+
+        assertEquals(oExpected, oResult);
+        verify(toDoRepository).findById(id);
+        verify(toDoRepository, never()).save(done);
 
     }
 

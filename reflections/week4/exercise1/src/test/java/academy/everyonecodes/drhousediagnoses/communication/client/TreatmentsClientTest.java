@@ -1,6 +1,6 @@
-package academy.everyonecodes.drhouseadmission.communication.client;
+package academy.everyonecodes.drhousediagnoses.communication.client;
 
-import academy.everyonecodes.drhouseadmission.domain.Patient;
+import academy.everyonecodes.drhousediagnoses.domain.Patient;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -10,27 +10,25 @@ import org.springframework.web.client.RestTemplate;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
 import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.NONE;
 
 @SpringBootTest(webEnvironment = NONE)
-class DiagnosesClientTest {
+class TreatmentsClientTest {
 
     @Autowired
-    DiagnosesClient diagnosesClient;
+    TreatmentsClient treatmentsClient;
 
     @MockBean
     RestTemplate restTemplate;
 
-    @Value("${diagnoses.url}")
-    String diagnoseUrl;
-
-    Patient patient = new Patient("uuid","test1", "test2");
+    @Value("${treatments.url}")
+    String url;
 
     @Test
-    void send() {
-        diagnosesClient.send(patient);
+    void post() {
+        Patient patient = new Patient("test", "test", "test", "test");
+        treatmentsClient.post(patient);
 
-        verify(restTemplate).postForObject(diagnoseUrl, patient, Patient.class);
+        verify(restTemplate).postForObject(url, patient, Void.class);
     }
 }

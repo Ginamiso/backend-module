@@ -28,5 +28,4 @@ public class Diagnosis {
     void setSymptoms(String symptoms) {
         this.symptoms = symptoms;
     }
-
 }

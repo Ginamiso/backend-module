@@ -20,19 +20,16 @@ public class SummaryCalculator {
     }
 
     public void process(ItemSelection itemSelection) {
-        String userEmail = itemSelection.getUserEmail();
-        String itemName = itemSelection.getItemName();
-        double itemPrice = itemSelection.getItemPrice();
         double deliveryCost = 2.50;
-        Optional<User> oUser = usersClient.getBy(userEmail);
-        if (oUser.isPresent() && oUser.get().getAccountType().equalsIgnoreCase("premium")) {
+        Optional<User> oUser = usersClient.getBy(itemSelection.getUserEmail());
+        if (oUser.isPresent() && oUser.get().getAccountType().equals("premium")) {
             deliveryCost = 0;
         }
-        double totalPrice = itemPrice + deliveryCost;
+        double totalPrice = itemSelection.getItemPrice() + deliveryCost;
         Summary summary = new Summary(
-                userEmail,
-                itemName,
-                itemPrice,
+                itemSelection.getUserEmail(),
+                itemSelection.getItemName(),
+                itemSelection.getItemPrice(),
                 deliveryCost,
                 totalPrice);
         basket.add(summary);

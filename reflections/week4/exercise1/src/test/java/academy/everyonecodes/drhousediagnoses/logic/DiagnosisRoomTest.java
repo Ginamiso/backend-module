@@ -1,5 +1,6 @@
 package academy.everyonecodes.drhousediagnoses.logic;
 
+import academy.everyonecodes.drhousediagnoses.communication.client.TreatmentsClient;
 import academy.everyonecodes.drhousediagnoses.domain.Patient;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -22,16 +23,16 @@ class DiagnosisRoomTest {
     @MockBean
     DrHouse drHouse;
 
+    @MockBean
+    TreatmentsClient treatmentsClient;
+
     Patient patient = new Patient("123","patient","test");
 
     @Test
     void diagnose() {
-        String diagnosis = "lupus";
-        Patient result = diagnosisRoom.diagnose(patient);
+        diagnosisRoom.diagnose(patient);
 
-        patient.setDiagnosis(diagnosis);
-
-        assertEquals(diagnosis, result.getDiagnosis());
         verify(drHouse).diagnose(patient);
+        verify(treatmentsClient).post(patient);
     }
 }

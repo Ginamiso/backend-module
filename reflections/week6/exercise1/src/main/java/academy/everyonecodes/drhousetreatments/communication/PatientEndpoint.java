@@ -9,7 +9,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/patients")
-public class PatientEndpoint {
+public class
+PatientEndpoint {
 
     private final Nurse nurse;
 

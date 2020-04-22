@@ -1,0 +1,7 @@
+treatments:
+  url: drhouse.treatments.test
+
+available:
+  diagnoses:
+    - name: test-diagnosis
+      symptoms: test-symptom

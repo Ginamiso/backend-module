@@ -16,6 +16,11 @@ public class Tweet {
     Tweet() {
     }
 
+    public Tweet(String user, String text) {
+        this.user = user;
+        this.text = text;
+    }
+
     public Tweet(String user, String text, int likes, List<String> comments, LocalDateTime timestamp) {
         this.user = user;
         this.text = text;

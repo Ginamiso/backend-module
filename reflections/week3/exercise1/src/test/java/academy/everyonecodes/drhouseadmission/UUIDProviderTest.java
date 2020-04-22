@@ -4,10 +4,14 @@ import academy.everyonecodes.drhouseadmission.domain.Patient;
 import academy.everyonecodes.drhouseadmission.logic.UUIDProvider;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -19,7 +23,7 @@ class UUIDProviderTest {
     @BeforeEach
     void setup() {
         cache = new HashMap<>();
-        provider = new UUIDProvider();
+        provider = new UUIDProvider(cache);
     }
 
     @Test
@@ -40,25 +44,22 @@ class UUIDProviderTest {
         assertNull(patient.getUuid());
 
         provider.provideUUID(patient);
-
         assertEquals(uuid, patient.getUuid());
-
-
     }
 
-    @Test
-    void findUUID() {
-        Optional<String> oResult = provider.findUUID("unknown");
-        assertTrue(oResult.isEmpty());
-
-        String patientName = "gina";
-        Patient patient = new Patient(null, patientName, "headache");
-        provider.provideUUID(patient);
-        String uuid = patient.getUuid();
-        oResult = provider.findUUID(patientName);
-
-        assertTrue(oResult.isPresent());
-
-        assertEquals(uuid, oResult.get());
+    @ParameterizedTest
+    @MethodSource("parameters")
+    void findUUID(Optional<String> oExpected, String name) {
+        cache.put("name", "uuid");
+        cache.put("name1", "uuid1");
+        Optional<String> oResult = provider.findUUID(name);
+        assertEquals(oExpected, oResult);
+    }
+    static Stream<Arguments> parameters(){
+        return Stream.of(
+                Arguments.of(Optional.empty(), ""),
+                Arguments.of(Optional.of("uuid"), "name"),
+                Arguments.of(Optional.of("uuid1"), "name1")
+        );
     }
 }

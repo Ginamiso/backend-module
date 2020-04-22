@@ -44,7 +44,7 @@ class TweetsEndpointTest {
 
     @Test
     void post() {
-        Tweet tweet = new Tweet("user", "text", 0, new ArrayList<>(), LocalDateTime.now());
+        Tweet tweet = new Tweet("user", "text");
         testRestTemplate.postForObject(url, tweet, Tweet.class);
 
         verify(twitterService).post(tweet);
@@ -52,7 +52,7 @@ class TweetsEndpointTest {
 
     @Test
     void like() {
-        testRestTemplate.put(url+"/"+id+"/likes", Void.class);
+        testRestTemplate.put(url+"/"+id+"/likes", null);
 
         verify(twitterService).like(id);
     }

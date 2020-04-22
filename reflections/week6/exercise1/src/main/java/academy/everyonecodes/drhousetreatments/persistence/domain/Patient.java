@@ -48,15 +48,15 @@ public class Patient {
         return treatment;
     }
 
-    public void setUuid(String uuid) {
+    void setUuid(String uuid) {
         this.uuid = uuid;
     }
 
-    public void setName(String name) {
+    void setName(String name) {
         this.name = name;
     }
 
-    public void setSymptoms(String symptoms) {
+    void setSymptoms(String symptoms) {
         this.symptoms = symptoms;
     }
 

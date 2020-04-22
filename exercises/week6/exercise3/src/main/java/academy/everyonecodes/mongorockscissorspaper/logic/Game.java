@@ -8,6 +8,9 @@ import academy.everyonecodes.mongorockscissorspaper.player.Human;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
+
+import static java.util.stream.Collectors.*;
 
 @Service
 public class Game {
@@ -28,7 +31,7 @@ public class Game {
         boolean wantsToPlay = true;
 
         while (wantsToPlay) {
-            System.out.println(createStatistics());
+            System.out.println("Game statistics: " + createStatistics());
             Move move1 = player1.play();
             Move move2 = player2.play();
             System.out.println("Player 1 chose: " + move1.getName());
@@ -42,27 +45,32 @@ public class Game {
     }
 
     private String createStatistics() {
-        String result = "Game statistics: ";
         List<GameResult> all = gameResultManager.findAll();
-        long player1 = all.stream()
-                .filter(gameResult -> gameResult.getResult().equals("Player 1 wins"))
-                .count();
-        long player2 = all.stream()
-                .filter(gameResult -> gameResult.getResult().equals("Player 2 wins"))
-                .count();
-        long nobody = all.stream()
-                .filter(gameResult -> gameResult.getResult().equals("Nobody wins"))
-                .count();
-        if (player1 != 0) {
-            result = result + "Player 1 wins: " + player1 + ", ";
-        }
-        if (player2 != 0) {
-            result = result + "Player 2 wins: " + player2 + ", ";
-        }
-        if (nobody != 0) {
-            result = result + "Nobody wins: " + nobody;
-        }
-        return result;
+        return all.stream()
+                .collect(groupingBy(GameResult::getResult, counting()))
+                .entrySet().stream()
+                .sorted(Map.Entry.comparingByKey())
+                .map(e -> e.getKey() + ": " + e.getValue())
+                .collect(joining(", "));
+//        long player1 = all.stream()
+//                .filter(gameResult -> gameResult.getResult().equals("Player 1 wins"))
+//                .count();
+//        long player2 = all.stream()
+//                .filter(gameResult -> gameResult.getResult().equals("Player 2 wins"))
+//                .count();
+//        long nobody = all.stream()
+//                .filter(gameResult -> gameResult.getResult().equals("Nobody wins"))
+//                .count();
+//        if (player1 != 0) {
+//            result = result + "Player 1 wins: " + player1 + ", ";
+//        }
+//        if (player2 != 0) {
+//            result = result + "Player 2 wins: " + player2 + ", ";
+//        }
+//        if (nobody != 0) {
+//            result = result + "Nobody wins: " + nobody;
+//        }
+//        return result;
     }
 }
 
