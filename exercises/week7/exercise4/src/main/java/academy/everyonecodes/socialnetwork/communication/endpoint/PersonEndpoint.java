@@ -4,6 +4,7 @@ import academy.everyonecodes.socialnetwork.communication.dto.PersonDTO;
 import academy.everyonecodes.socialnetwork.logic.SocialMediaService;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -20,7 +21,7 @@ public class PersonEndpoint {
         return service.getAll();
     }
     @PostMapping
-    PersonDTO post(@RequestBody PersonDTO personDTO){
+    PersonDTO post(@Valid @RequestBody PersonDTO personDTO){
         return service.post(personDTO);
     }
     @PutMapping("/{id1}/friend/{id2}")
