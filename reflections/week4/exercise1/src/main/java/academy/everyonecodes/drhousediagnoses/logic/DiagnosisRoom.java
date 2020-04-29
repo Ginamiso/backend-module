@@ -1,7 +1,7 @@
 package academy.everyonecodes.drhousediagnoses.logic;
 
-import academy.everyonecodes.drhousediagnoses.communication.client.TreatmentsClient;
 import academy.everyonecodes.drhousediagnoses.domain.Patient;
+import academy.everyonecodes.drhousediagnoses.communication.client.TreatmentsClient;
 import org.springframework.stereotype.Service;
 
 @Service

@@ -4,8 +4,7 @@ import academy.everyonecodes.socialnetwork.communication.dto.PersonDTO;
 import academy.everyonecodes.socialnetwork.persistence.domain.Person;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.stream.Collectors;
+import static java.util.stream.Collectors.toList;
 
 @Service
 public class PersonTranslator {
@@ -17,11 +16,11 @@ public class PersonTranslator {
                 person.getFriends()
                         .stream()
                         .map(Person::getName)
-                        .collect(Collectors.toList()));
+                        .collect(toList()));
 
     }
 
     public Person translateToPerson(PersonDTO personDTO) {
-        return new Person(personDTO.getName(), new ArrayList<>());
+        return new Person(personDTO.getName());
     }
 }

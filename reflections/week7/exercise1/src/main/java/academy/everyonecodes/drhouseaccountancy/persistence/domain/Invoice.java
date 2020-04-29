@@ -1,8 +1,9 @@
 package academy.everyonecodes.drhouseaccountancy.persistence.domain;
 
-import jdk.jfr.BooleanFlag;
-
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import java.util.Objects;
 
 @Entity
@@ -13,7 +14,7 @@ public class Invoice {
     private Long id;
 
     private double cost;
-    
+
     private boolean paid;
 
     @ManyToOne
@@ -24,6 +25,12 @@ public class Invoice {
 
     public Invoice(double cost, Patient patient) {
         this.cost = cost;
+        this.patient = patient;
+    }
+
+    public Invoice(double cost, boolean paid, Patient patient) {
+        this.cost = cost;
+        this.paid = paid;
         this.patient = patient;
     }
 
@@ -43,21 +50,10 @@ public class Invoice {
         return patient;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public void setCost(double cost) {
-        this.cost = cost;
-    }
-
     public void setPaid(boolean paid) {
         this.paid = paid;
     }
 
-    public void setPatient(Patient patient) {
-        this.patient = patient;
-    }
 
     @Override
     public boolean equals(Object o) {

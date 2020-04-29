@@ -1,7 +1,7 @@
 package academy.everyonecodes.thegreatgatsby.logic;
 
-import academy.everyonecodes.thegreatgatsby.persistence.domain.Invitation;
 import academy.everyonecodes.thegreatgatsby.persistence.repository.InvitationRepository;
+import academy.everyonecodes.thegreatgatsby.persistence.domain.Invitation;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 

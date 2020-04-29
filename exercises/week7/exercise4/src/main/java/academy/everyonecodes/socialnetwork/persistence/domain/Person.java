@@ -1,6 +1,8 @@
 package academy.everyonecodes.socialnetwork.persistence.domain;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -11,21 +13,17 @@ public class Person {
     @GeneratedValue
     private Long id;
 
+    @NotEmpty
     private String name;
 
     @ManyToMany(fetch = FetchType.EAGER)
-    private List<Person> friends;
+    private List<Person> friends = new ArrayList<>();
 
     public Person() {
     }
 
     public Person(String name) {
         this.name = name;
-    }
-
-    public Person(String name, List<Person> friends) {
-        this.name = name;
-        this.friends = friends;
     }
 
     public Person(Long id, String name, List<Person> friends) {

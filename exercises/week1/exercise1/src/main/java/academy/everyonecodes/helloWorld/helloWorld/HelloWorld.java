@@ -1,4 +1,4 @@
-package com.example.demo.helloWorld;
+package academy.everyonecodes.helloWorld.helloWorld;
 
 import org.springframework.stereotype.Service;
 

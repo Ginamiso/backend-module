@@ -1,6 +1,6 @@
 package academy.everyonecodes.drhouseaccountancy.communication.enpoint;
 
-import academy.everyonecodes.drhouseaccountancy.logic.AccountantService;
+import academy.everyonecodes.drhouseaccountancy.logic.InvoiceService;
 import academy.everyonecodes.drhouseaccountancy.persistence.domain.Invoice;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,18 +10,21 @@ import java.util.List;
 @RequestMapping("/invoices")
 public class InvoiceEndpoint {
 
-    private final AccountantService accountantService;
+    private final InvoiceService invoiceService;
 
-    public InvoiceEndpoint(AccountantService accountantService) {
-        this.accountantService = accountantService;
+    public InvoiceEndpoint(InvoiceService invoiceService) {
+        this.invoiceService = invoiceService;
+
     }
+
     @GetMapping
-    List<Invoice> get(){
-        return accountantService.getAll();
+    List<Invoice> get() {
+        return invoiceService.findAll();
     }
+
     @PutMapping("/{id}/paid")
-    void markAsPaid(@PathVariable Long id){
-        accountantService.setToPaid(id);
+    void markAsPaid(@PathVariable Long id) {
+        invoiceService.markAsPaid(id);
     }
 
 }

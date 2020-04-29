@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.validation.Valid;
 import javax.validation.constraints.NotEmpty;
 import java.util.Objects;
 
@@ -17,6 +18,7 @@ public class Contact {
     @NotEmpty
     private String name;
 
+    @Valid
     @OneToOne
     private Address address;
 

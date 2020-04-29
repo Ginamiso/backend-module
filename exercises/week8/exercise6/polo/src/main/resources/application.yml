@@ -1,0 +1,11 @@
+server:
+  port: 9001
+spring:
+  security:
+    user:
+      name: marcopolo
+      password: marcopolo
+polo:
+  marco: Marco
+  rightAnswer: Polo
+  what: What?

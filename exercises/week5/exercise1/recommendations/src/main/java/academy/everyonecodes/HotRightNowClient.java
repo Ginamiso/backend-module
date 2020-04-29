@@ -1,7 +1,6 @@
 package academy.everyonecodes;
 
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.client.RestTemplate;
 

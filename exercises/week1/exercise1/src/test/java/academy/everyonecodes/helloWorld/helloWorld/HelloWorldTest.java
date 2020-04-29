@@ -1,4 +1,4 @@
-package com.example.demo.helloWorld;
+package academy.everyonecodes.helloWorld.helloWorld;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class HelloWorldTest {
 
     @Autowired
-    com.example.demo.helloWorld.HelloWorld helloWorld;
+    HelloWorld helloWorld;
 
     @Test
     void get() {

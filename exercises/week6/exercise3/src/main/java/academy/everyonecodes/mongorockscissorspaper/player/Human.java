@@ -1,9 +1,8 @@
 package academy.everyonecodes.mongorockscissorspaper.player;
 
 
-import academy.everyonecodes.mongorockscissorspaper.domain.Move;
-import academy.everyonecodes.mongorockscissorspaper.logic.GameResultManager;
 import academy.everyonecodes.mongorockscissorspaper.util.MoveUtils;
+import academy.everyonecodes.mongorockscissorspaper.domain.Move;
 
 import java.util.Optional;
 import java.util.Scanner;

@@ -4,18 +4,18 @@ import academy.everyonecodes.socialnetwork.communication.dto.PersonDTO;
 import academy.everyonecodes.socialnetwork.persistence.domain.Person;
 import academy.everyonecodes.socialnetwork.persistence.repository.PersonRepository;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.boot.test.mock.mockito.SpyBean;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Stream;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.*;
 import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.NONE;
 
@@ -28,49 +28,42 @@ class SocialMediaServiceTest {
     @MockBean
     PersonRepository repository;
 
-    @SpyBean
+    @MockBean
     PersonTranslator translator;
-
-    Person savedPerson = new Person(1L, "name", new ArrayList<>());
-    PersonDTO expectedDTO = new PersonDTO(1L, "name", new ArrayList<>());
 
     Long id1 = 1L;
     Long id2 = 2L;
-    Person person1 = new Person(id1, "test1", new ArrayList<>());
-    Person person2 = new Person(id2, "test2", new ArrayList<>());
+
+    Person person1 = new Person(id1,"name1", new ArrayList<>());
+    Person person2 = new Person(id2,"name2", new ArrayList<>());
 
     @Test
     void post() {
         PersonDTO personDTO = new PersonDTO("name");
-        Person person = new Person("name", new ArrayList<>());
+        when(translator.translateToPerson(personDTO))
+                .thenReturn(person1);
 
         service.post(personDTO);
 
-        verify(repository).save(person);
         verify(translator).translateToPerson(personDTO);
+        verify(repository).save(person1);
+        verify(translator).translateToDTO(person1);
     }
 
     @Test
     void getAll() {
-        List<Person> persons = List.of(savedPerson);
-        List<PersonDTO> expected = List.of(expectedDTO);
+        List<Person> persons = List.of(person1, person2);
         when(repository.findAll())
                 .thenReturn(persons);
 
-        List<PersonDTO> result = service.getAll();
-
-        assertEquals(expected, result);
+        service.getAll();
 
         verify(repository).findAll();
-        verify(translator,times(persons.size())).translateToDTO(savedPerson);
-
+        verify(translator, times(persons.size())).translateToDTO(any(Person.class));
     }
 
     @Test
-    void connectFindsPerson() {
-        assertTrue(person1.getFriends().isEmpty());
-        assertTrue((person2.getFriends().isEmpty()));
-
+    void friendFindsBothPersons() {
         when(repository.findById(id1))
                 .thenReturn(Optional.of(person1));
         when(repository.findById(id2))
@@ -78,60 +71,65 @@ class SocialMediaServiceTest {
 
         service.connect(id1, id2);
 
-        assertEquals(person2, person1.getFriends().get(0));
-        assertEquals(person1, person2.getFriends().get(0));
+        verify(repository).findById(id1);
+        verify(repository).findById(id2);
+        verify(repository).save(new Person(id1,"name1", List.of(person2)));
+        verify(repository).save(new Person(id2,"name2", List.of(person1)));
+    }
+
+    @Test
+    void unfriendFindsBothPersons() {
+        Person personFriends1 = new Person(id1, "name1", new ArrayList<>(List.of(person2)));
+        Person personFriends2 = new Person(id2, "name2", new ArrayList<>(List.of(person1)));
+
+        when(repository.findById(id1))
+                .thenReturn(Optional.of(personFriends1));
+        when(repository.findById(id2))
+                .thenReturn(Optional.of(personFriends2));
+
+        service.unfriend(id1, id2);
+
         verify(repository).findById(id1);
         verify(repository).findById(id2);
         verify(repository).save(person1);
         verify(repository).save(person2);
+
     }
-    @Test
-    void connectDoesNotFindAnyPerson(){
+
+    @ParameterizedTest
+    @MethodSource("parameters")
+    void friendDoesNotFindPersons(Optional<Person> oPerson1, Optional<Person> oPerson2) {
         when(repository.findById(id1))
-                .thenReturn(Optional.empty());
+                .thenReturn(oPerson1);
         when(repository.findById(id2))
-                .thenReturn(Optional.empty());
+                .thenReturn(oPerson2);
         service.connect(id1, id2);
 
         verify(repository).findById(id1);
         verify(repository).findById(id2);
-        verify(repository, never()).save(person1);
+        verifyNoMoreInteractions(repository);
     }
 
-    @Test
-    void unfriendFindsPerson() {
-        Person person1 = new Person(id1, "test1", new ArrayList<>());
-        Person person2 = new Person(id2, "test2", new ArrayList<>());
-        person1.getFriends().add(person2);
-        person2.getFriends().add(person1);
-
+    @ParameterizedTest
+    @MethodSource("parameters")
+    void unfriendDoesNotFindPersons(Optional<Person> oPerson1, Optional<Person> oPerson2) {
         when(repository.findById(id1))
-                .thenReturn(Optional.of(person1));
+                .thenReturn(oPerson1);
         when(repository.findById(id2))
-                .thenReturn(Optional.of(person2));
-
-        service.unfriend(id1, id2);
-
-        assertTrue(person1.getFriends().isEmpty());
-        assertTrue(person2.getFriends().isEmpty());
-
-        verify(repository).findById(id1);
-        verify(repository).findById(id2);
-        verify(repository).save(person1);
-        verify(repository).save(person2);
-
-    }
-    @Test
-    void unfriendDoesNotFindAnyPerson(){
-        when(repository.findById(id1))
-                .thenReturn(Optional.empty());
-        when(repository.findById(id2))
-                .thenReturn(Optional.empty());
+                .thenReturn(oPerson2);
 
         service.unfriend(id1, id2);
 
         verify(repository).findById(id1);
         verify(repository).findById(id2);
-        verify(repository, never()).save(person1);
+        verifyNoMoreInteractions(repository);
+    }
+
+    static Stream<Arguments> parameters() {
+        return Stream.of(
+                Arguments.of(Optional.empty(), Optional.empty()),
+                Arguments.of(Optional.empty(), Optional.of(new Person("name"))),
+                Arguments.of(Optional.of(new Person("name")), Optional.empty())
+        );
     }
 }

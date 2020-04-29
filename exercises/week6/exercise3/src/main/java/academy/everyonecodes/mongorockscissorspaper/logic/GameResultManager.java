@@ -1,7 +1,7 @@
 package academy.everyonecodes.mongorockscissorspaper.logic;
 
-import academy.everyonecodes.mongorockscissorspaper.domain.GameResult;
 import academy.everyonecodes.mongorockscissorspaper.repository.GameResultRepository;
+import academy.everyonecodes.mongorockscissorspaper.domain.GameResult;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

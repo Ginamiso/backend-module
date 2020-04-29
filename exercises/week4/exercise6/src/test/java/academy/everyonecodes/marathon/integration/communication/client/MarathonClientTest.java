@@ -11,7 +11,6 @@ import org.springframework.web.client.RestTemplate;
 
 import java.time.Duration;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.NONE;
 
 @SpringBootTest(webEnvironment = NONE)

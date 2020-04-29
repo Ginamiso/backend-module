@@ -1,8 +1,7 @@
 package academy.everyonecodes.phonebook.communication.enpoint;
 
-import academy.everyonecodes.phonebook.logic.PhoneBookService;
-import academy.everyonecodes.phonebook.persistence.domain.Address;
 import academy.everyonecodes.phonebook.persistence.domain.Contact;
+import academy.everyonecodes.phonebook.logic.PhoneBookService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;

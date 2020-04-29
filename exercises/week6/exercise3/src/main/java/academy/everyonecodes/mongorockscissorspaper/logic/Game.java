@@ -2,8 +2,8 @@ package academy.everyonecodes.mongorockscissorspaper.logic;
 
 
 import academy.everyonecodes.mongorockscissorspaper.domain.GameResult;
-import academy.everyonecodes.mongorockscissorspaper.domain.Move;
 import academy.everyonecodes.mongorockscissorspaper.player.Computer;
+import academy.everyonecodes.mongorockscissorspaper.domain.Move;
 import academy.everyonecodes.mongorockscissorspaper.player.Human;
 import org.springframework.stereotype.Service;
 

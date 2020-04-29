@@ -1,11 +1,10 @@
 package academy.everyonecodes.mongorockscissorspaper.configuration;
 
 
+import academy.everyonecodes.mongorockscissorspaper.util.MoveUtils;
 import academy.everyonecodes.mongorockscissorspaper.domain.Move;
-import academy.everyonecodes.mongorockscissorspaper.logic.GameResultManager;
 import academy.everyonecodes.mongorockscissorspaper.player.Computer;
 import academy.everyonecodes.mongorockscissorspaper.player.Human;
-import academy.everyonecodes.mongorockscissorspaper.util.MoveUtils;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

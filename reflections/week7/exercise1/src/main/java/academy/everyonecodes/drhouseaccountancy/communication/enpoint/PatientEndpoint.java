@@ -16,8 +16,9 @@ public class PatientEndpoint {
     public PatientEndpoint(AccountantService accountantService) {
         this.accountantService = accountantService;
     }
+
     @PostMapping
-    PatientDTO post(@RequestBody PatientDTO patientDTO){
+    PatientDTO post(@RequestBody PatientDTO patientDTO) {
         return accountantService.invoice(patientDTO);
     }
 }

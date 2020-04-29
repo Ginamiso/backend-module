@@ -1,17 +1,13 @@
 package academy.everyonecodes.twitter.communication.endpoint;
 
-import academy.everyonecodes.twitter.logic.TwitterService;
 import academy.everyonecodes.twitter.persistence.domain.Tweet;
+import academy.everyonecodes.twitter.logic.TwitterService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.verify;
 import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.RANDOM_PORT;
 

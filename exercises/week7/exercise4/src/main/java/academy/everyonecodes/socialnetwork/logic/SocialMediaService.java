@@ -7,7 +7,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
+
+import static java.util.stream.Collectors.toList;
 
 @Service
 public class SocialMediaService {
@@ -30,7 +31,7 @@ public class SocialMediaService {
         List<Person> persons = personRepository.findAll();
         return persons.stream()
                 .map(translator::translateToDTO)
-                .collect(Collectors.toList());
+                .collect(toList());
     }
 
     public void connect(Long id1, Long id2) {
@@ -39,7 +40,7 @@ public class SocialMediaService {
         }
         Optional<Person> oPerson1 = personRepository.findById(id1);
         Optional<Person> oPerson2 = personRepository.findById(id2);
-        if (oPerson1.isEmpty() && oPerson2.isEmpty()) {
+        if (oPerson1.isEmpty() || oPerson2.isEmpty()) {
             return;
         }
         makeFriends(oPerson1.get(), oPerson2.get());
@@ -47,27 +48,24 @@ public class SocialMediaService {
     }
 
     private void makeFriends(Person person1, Person person2) {
-        if (!person1.getFriends().contains(person2)) {
-            person1.getFriends().add(person2);
-            personRepository.save(person1);
+        if (person1.getFriends().contains(person2)) {
+            return;
         }
+        person1.getFriends().add(person2);
+        personRepository.save(person1);
     }
 
     public void unfriend(Long id1, Long id2) {
         Optional<Person> oPerson1 = personRepository.findById(id1);
         Optional<Person> oPerson2 = personRepository.findById(id2);
-        if (oPerson1.isEmpty() && oPerson2.isEmpty()) {
+        if (oPerson1.isEmpty() || oPerson2.isEmpty()) {
             return;
         }
         Person person1 = oPerson1.get();
         Person person2 = oPerson2.get();
-        noMoreFriends(person1, person2);
-        noMoreFriends(person2, person1);
-    }
-
-    private void noMoreFriends(Person person1, Person person2) {
         person1.getFriends().remove(person2);
+        person2.getFriends().remove(person1);
         personRepository.save(person1);
-
+        personRepository.save(person2);
     }
 }

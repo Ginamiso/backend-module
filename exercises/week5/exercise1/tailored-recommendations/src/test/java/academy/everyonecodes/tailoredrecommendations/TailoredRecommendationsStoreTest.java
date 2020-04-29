@@ -13,7 +13,6 @@ import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.NONE;
-import static org.springframework.test.annotation.DirtiesContext.MethodMode.AFTER_METHOD;
 
 @SpringBootTest(webEnvironment = NONE)
 class TailoredRecommendationsStoreTest {

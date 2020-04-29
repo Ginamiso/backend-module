@@ -1,7 +1,7 @@
 package academy.everyonecodes.punchcards.logic;
 
-import academy.everyonecodes.punchcards.persistence.domain.PunchCard;
 import academy.everyonecodes.punchcards.persistence.repository.PunchCardRepository;
+import academy.everyonecodes.punchcards.persistence.domain.PunchCard;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;

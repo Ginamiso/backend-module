@@ -16,7 +16,7 @@ public class DiagnosesClient {
         this.restTemplate = restTemplate;
         this.diagnoseUrl = diagnoseUrl;
     }
-    public Patient send(Patient patient){
-        return restTemplate.postForObject(diagnoseUrl, patient, Patient.class);
+    public void send(Patient patient){
+        restTemplate.postForObject(diagnoseUrl, patient, Patient.class);
     }
 }

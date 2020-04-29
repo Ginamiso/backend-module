@@ -1,0 +1,7 @@
+spring:
+  security:
+    user:
+      name: spaceballs
+      password: 12345
+app:
+  message: It’s never too late.

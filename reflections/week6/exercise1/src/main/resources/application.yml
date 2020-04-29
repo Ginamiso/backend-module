@@ -5,4 +5,7 @@ spring:
     mongodb:
       uri: mongodb://localhost/drhouse-treatments
 nurse:
-  treatment: spendd one day in the hospital bed
+  treatment: spend one day in the hospital bed
+accountancy:
+  url: http://localhost:9004/patients
+

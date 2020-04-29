@@ -1,6 +1,5 @@
 package academy.everyonecodes.phonebook.logic;
 
-import academy.everyonecodes.phonebook.persistence.domain.Address;
 import academy.everyonecodes.phonebook.persistence.domain.Contact;
 import academy.everyonecodes.phonebook.persistence.repository.AddressRepository;
 import academy.everyonecodes.phonebook.persistence.repository.ContactRepository;

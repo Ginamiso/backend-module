@@ -1,7 +1,6 @@
 package academy.everyonecodes.rockscissorpaper.player;
 
 import academy.everyonecodes.rockscissorpaper.domain.Move;
-import academy.everyonecodes.rockscissorpaper.player.Player;
 
 import java.util.List;
 import java.util.Random;

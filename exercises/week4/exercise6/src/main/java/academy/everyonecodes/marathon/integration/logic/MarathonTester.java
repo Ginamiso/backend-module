@@ -5,7 +5,6 @@ import academy.everyonecodes.marathon.integration.domain.Runner;
 import academy.everyonecodes.marathon.integration.domain.TestResult;
 import org.springframework.stereotype.Service;
 
-import java.time.Duration;
 import java.util.List;
 import java.util.Optional;
 

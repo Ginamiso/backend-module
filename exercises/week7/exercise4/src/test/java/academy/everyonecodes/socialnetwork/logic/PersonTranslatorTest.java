@@ -4,7 +4,6 @@ import academy.everyonecodes.socialnetwork.communication.dto.PersonDTO;
 import academy.everyonecodes.socialnetwork.persistence.domain.Person;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -26,7 +25,7 @@ class PersonTranslatorTest {
     @Test
     void translateToPerson() {
         PersonDTO personDTO = new PersonDTO("name");
-        Person expected = new Person("name", new ArrayList<>());
+        Person expected = new Person("name");
 
         Person result = translator.translateToPerson(personDTO);
         assertEquals(expected, result);

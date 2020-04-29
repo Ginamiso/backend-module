@@ -10,7 +10,6 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 
 import java.util.Scanner;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 

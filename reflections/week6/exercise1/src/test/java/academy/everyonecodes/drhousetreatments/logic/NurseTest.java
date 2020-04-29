@@ -1,5 +1,6 @@
 package academy.everyonecodes.drhousetreatments.logic;
 
+import academy.everyonecodes.drhousetreatments.communication.client.AccountancyClient;
 import academy.everyonecodes.drhousetreatments.persistence.domain.Patient;
 import academy.everyonecodes.drhousetreatments.persistence.domain.Treatment;
 import academy.everyonecodes.drhousetreatments.persistence.repository.TreatmentRepository;
@@ -22,6 +23,9 @@ class NurseTest {
     @MockBean
     TreatmentRepository repository;
 
+    @MockBean
+    AccountancyClient accountancyClient;
+
     @Value("${nurse.treatment}")
     String bed;
 
@@ -37,5 +41,6 @@ class NurseTest {
 
         Treatment treatment = new Treatment("uuid", "name", "test", "test", bed);
         verify(repository).save(treatment);
+        verify(accountancyClient).post(patient);
     }
 }
