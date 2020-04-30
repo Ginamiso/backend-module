@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+@Secured("ROLE_OWNER")
 @RestController
 @RequestMapping("/shop")
 public class ShopEndpoint {
@@ -17,13 +18,11 @@ public class ShopEndpoint {
     }
 
     @PutMapping("/open")
-    @Secured("ROLE_OWNER")
     void open() {
         shopService.open();
     }
 
     @PutMapping("/close")
-    @Secured("ROLE_OWNER")
     void close() {
         shopService.close();
     }

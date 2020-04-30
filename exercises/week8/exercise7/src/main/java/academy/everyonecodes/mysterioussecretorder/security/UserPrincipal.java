@@ -1,7 +1,6 @@
 package academy.everyonecodes.mysterioussecretorder.security;
 
 import academy.everyonecodes.mysterioussecretorder.persistence.domain.User;
-import org.springframework.data.mongodb.util.BsonUtils;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;

@@ -16,15 +16,15 @@ public class ProductsEndpoint {
     public ProductsEndpoint(ProductService productService) {
         this.productService = productService;
     }
+    @GetMapping
+    List<Product> getStandard(){
+        return productService.getNormalProducts();
+    }
     @PostMapping
     @Secured("ROLE_OWNER")
     Product post(@RequestBody Product product){
         productService.save(product);
         return product;
-    }
-    @GetMapping
-    List<Product> getNotPremium(){
-        return productService.getNormalProducts();
     }
     @GetMapping("/premium")
     @Secured({"ROLE_PREMIUM", "ROLE_OWNER"})

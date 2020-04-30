@@ -1,7 +1,5 @@
 package academy.everyonecodes.smallbusiness.security;
 
-import java.util.Set;
-
 public class ShopUser {
 
     private String username;

@@ -14,11 +14,14 @@ import java.util.Set;
 public class PrepareMasterRunner {
 
     @Bean
-    ApplicationRunner prepareMaster(UserRepository userRepository, PasswordEncoder passwordEncoder){
+    ApplicationRunner prepareMaster(UserRepository userRepository, PasswordEncoder passwordEncoder,
+                                    @Value("${master.username}") String username,
+                                    @Value("${master.password}") String password,
+                                    @Value("${master.authorities}") Set<String> authorities) {
         return args -> {
-            if(!userRepository.existsByUsername("eugenia")){
-                String encodedPassword = passwordEncoder.encode("eugenia");
-                User master = new User("eugenia", encodedPassword, Set.of("ROLE_MASTER"));
+            if (!userRepository.existsByUsername(username)) {
+                String encodedPassword = passwordEncoder.encode(password);
+                User master = new User(username, encodedPassword, authorities);
                 userRepository.save(master);
             }
         };

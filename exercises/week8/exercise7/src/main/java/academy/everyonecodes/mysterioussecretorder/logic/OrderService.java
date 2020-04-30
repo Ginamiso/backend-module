@@ -7,7 +7,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class OrderService {
@@ -22,18 +21,18 @@ public class OrderService {
         this.encoder = encoder;
         this.apprentices = apprentices;
     }
-    public void save(User user){
+
+    public void save(User user) {
         String password = encoder.encode(user.getPassword());
         user.setPassword(password);
         repository.save(user);
     }
-    public List<User> findAll(){
+
+    public List<User> findAll() {
         return repository.findAll();
     }
-    public List<User> findApprentices(){
+
+    public List<User> findApprentices() {
         return repository.findByAuthorities(apprentices);
-    }
-    public Optional<User> findByUsername(String username){
-        return repository.findOneByUsername(username);
     }
 }

@@ -36,10 +36,11 @@ class OrderServiceTest {
         User user = new User("user", password, Set.of("ROLE"));
         when(passwordEncoder.encode(password))
                 .thenReturn(encoded);
+
         orderService.save(user);
 
         verify(passwordEncoder).encode(password);
-        verify(userRepository).save(user);
+        verify(userRepository).save(new User("user", encoded, Set.of("ROLE")));
     }
 
     @Test
@@ -51,11 +52,8 @@ class OrderServiceTest {
 
     @Test
     void findApprentices() {
-        List<User> result = orderService.findApprentices();
-        List<User> expected = List.of(new User("master", "master", Set.of("ROLE_MASTER", "ROLE_APPRENTICE")));
+        orderService.findApprentices();
 
-        assertEquals(expected, result);
-
-        verify(userRepository).findByAuthorities("ROLE_MASTER");
+        verify(userRepository).findByAuthorities("ROLE_APPRENTICE");
     }
 }
