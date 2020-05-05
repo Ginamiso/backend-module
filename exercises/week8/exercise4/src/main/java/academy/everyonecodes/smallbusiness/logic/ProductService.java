@@ -24,13 +24,8 @@ public class ProductService {
         repository.save(product);
     }
 
-    public List<Product> getPremium() {
-        return (shopService.isOpen()) ? repository.findByIsPremium(true) : new ArrayList<>();
-
-    }
-
-    public List<Product> getNormalProducts() {
-        return (shopService.isOpen()) ? repository.findByIsPremium(false) : new ArrayList<>();
+    public List<Product> findByIsPremium(boolean isPremium) {
+        return (shopService.isOpen()) ? repository.findByIsPremium(isPremium) : new ArrayList<>();
 
     }
 }

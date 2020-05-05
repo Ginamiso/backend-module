@@ -4,6 +4,7 @@ spring:
       uri: mongodb://localhost/small-business
 server:
   port: 8500
+
 credentials:
   shopUsers:
     - username: owner
@@ -12,3 +13,7 @@ credentials:
     - username: premium
       password: premium
       authorities: ROLE_PREMIUM
+shop:
+  opening: "0 0 9 * * MON-FRI"
+  closing: "0 0 17 * * MON-FRI"
+  rate: "10000"

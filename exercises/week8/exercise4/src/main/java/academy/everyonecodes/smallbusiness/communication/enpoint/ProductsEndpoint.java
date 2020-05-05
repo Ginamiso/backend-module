@@ -18,7 +18,7 @@ public class ProductsEndpoint {
     }
     @GetMapping
     List<Product> getStandard(){
-        return productService.getNormalProducts();
+        return productService.findByIsPremium(false);
     }
     @PostMapping
     @Secured("ROLE_OWNER")
@@ -29,7 +29,7 @@ public class ProductsEndpoint {
     @GetMapping("/premium")
     @Secured({"ROLE_PREMIUM", "ROLE_OWNER"})
     List<Product> getPremium(){
-        return productService.getPremium();
+        return productService.findByIsPremium(true);
     }
 
 }
