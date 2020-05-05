@@ -1,0 +1,10 @@
+asynch1:
+  delay: 5000
+  message1: Fixed delay message every 5 seconds.
+asynch2:
+  rate: 2000
+  message2: Fixed rate message every 2 seconds.
+asynch3:
+  cron: "30 2 9-18 * * MON-FRI"
+  message3: Cron message every interval.
+
