@@ -40,7 +40,7 @@ class AccountantServiceTest {
                 .thenReturn(Optional.empty());
         when(patientRepository.save(patient))
                 .thenReturn(patient);
-
+        Patient patient = new Patient(uuid, "name", "symptoms", "diagnosis", "treatment");
         accountantService.invoice(patientDTO);
 
         verify(patientRepository).findByUuid(uuid);

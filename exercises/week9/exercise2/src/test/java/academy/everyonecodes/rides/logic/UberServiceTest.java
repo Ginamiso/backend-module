@@ -53,6 +53,7 @@ class UberServiceTest {
                 .thenReturn(Optional.empty());
 
         uberService.connect(ride, id);
+
         verify(driverRepository).findById(id);
         verifyNoInteractions(rideRepository);
         verifyNoMoreInteractions(driverRepository);

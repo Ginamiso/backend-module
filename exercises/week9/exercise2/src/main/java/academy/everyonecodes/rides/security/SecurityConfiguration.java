@@ -24,7 +24,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     private List<UberUser> credentials;
 
-    public void setCredentials(List<UberUser> credentials) {
+    void setCredentials(List<UberUser> credentials) {
         this.credentials = credentials;
     }
 
